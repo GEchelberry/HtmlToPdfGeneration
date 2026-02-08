@@ -20,7 +20,10 @@
 package com.htmltopdf.element;
 
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
 import java.util.List;
+
+import com.htmltopdf.security.PdfR4V4Security;
 
 /**
  * Class that holds the Catalog structure data
@@ -29,6 +32,7 @@ public class Catalog implements Element {
     private int objectId;
     private float version = 1.7f;
     private String language = "en-US";
+    private XmpMetaData metaData;
 
     /**
      * Sets the version of the PDF default 1.7
@@ -44,6 +48,14 @@ public class Catalog implements Element {
      */
     public void setLanguage(String language) {
         this.language = language;
+    }
+
+    /**
+     * Sets the meta data object
+     * @param metaData XmpMetaData object for the PDF
+     */
+    public void setMetaData(XmpMetaData metaData) {
+        this.metaData = metaData;
     }
 
     @Override
@@ -63,10 +75,12 @@ public class Catalog implements Element {
         sb.append("<< /Type /Catalog\n");
         sb.append("/Version /" + version + "\n");
         if (encryptionKey != null) {
-
+            sb.append("/Lang <" + PdfR4V4Security.encryptString(encryptionKey, objectId, 0, language.getBytes(StandardCharsets.UTF_8)) + ">\n");
         } else {
             sb.append("/Lang (" + language + ")\n");
         }
+        sb.append("/MarkInfo << /Marked true >>\n");
+        sb.append("/Metadata " + metaData.getObjectId() + " 0 R\n");
         sb.append("/ViewerPrefernces << /DisplayDocTitle true >>\n");
         sb.append(">>\n");
         sb.append("endobj");
@@ -76,8 +90,10 @@ public class Catalog implements Element {
 
     @Override
     public List<Element> buildElementList() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'buildElementList'");
+        List<Element> elements = new ArrayList<>();
+        elements.add(this);
+
+        return elements;
     }
     
 }

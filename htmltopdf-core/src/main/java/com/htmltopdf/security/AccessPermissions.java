@@ -82,6 +82,54 @@ public class AccessPermissions {
     }
 
     /**
+     * Sets if extraction is allowed
+     * @param allowExtraction boolean allow extraction
+     */
+    public void setCanExtract(boolean allowExtraction) {
+        setPermissionBit(EXTRACT_BIT, allowExtraction);
+    }
+
+    /**
+     * Sets if annotations can be modified
+     * @param allowAnnotations boolean allow annotations
+     */
+    public void setCanModifyAnnotations(boolean allowAnnotations) {
+        setPermissionBit(MODIFY_ANNOTATIONS_BIT, allowAnnotations);
+    }
+
+    /**
+     * Sets if filling in forms is allowed
+     * @param allowFillInForm boolean allow filling in forms
+     */
+    public void setCanFillInForm(boolean allowFillInForm) {
+        setPermissionBit(FILL_IN_FORM_BIT, allowFillInForm);
+    }
+
+    /**
+     * Sets if extraction for accessibility is allowed
+     * @param allowAccessibility boolean allow accessibility extraction
+     */
+    public void setCanExtractForAccessibility(boolean allowAccessibility) {
+        setPermissionBit(EXTRACT_FOR_ACCESSIBILITY_BIT, allowAccessibility);
+    }
+
+    /**
+     * Sets if the document can be assembled (Adding or removing pages)
+     * @param allowAssembly boolean allow assembly
+     */
+    public void setCanAssembleDocument(boolean allowAssembly) {
+        setPermissionBit(ASSEMBLE_DOCUMENT_BIT, allowAssembly);
+    }
+
+    /**
+     * Sets if faithful printing is allowed
+     * @param allowFaithfulPrinting boolean allow faithful printing
+     */
+    public void setCanFaithfulPrint(boolean allowFaithfulPrinting) {
+        setPermissionBit(FAITHFUL_PRINT_BIT, allowFaithfulPrinting);
+    }
+
+    /**
      * Set a permission Bit
      * @param bit int the bit to be set
      * @param value boolean allow access
