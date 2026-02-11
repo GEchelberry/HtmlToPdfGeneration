@@ -49,6 +49,14 @@ public class XmpMetaData implements Element {
         this.info = info;
     }
 
+    /**
+     * Gets the document Id
+     * @return String of the document Id.
+     */
+    public String getDocumentId() {
+        return documentId;
+    }
+
     @Override
     public void setObjectId(int objectId) {
         this.objectId = objectId;

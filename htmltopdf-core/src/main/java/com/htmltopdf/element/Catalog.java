@@ -23,6 +23,7 @@ import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.htmltopdf.renderer.Util;
 import com.htmltopdf.security.PdfR4V4Security;
 
 /**
@@ -32,7 +33,11 @@ public class Catalog implements Element {
     private int objectId;
     private float version = 1.7f;
     private String language = "en-US";
+    private Pages pages;
+    private StructTreeRoot structTreeRoot;
+    private Outlines outlines;
     private XmpMetaData metaData;
+    private AcroForm acroForm;
 
     /**
      * Sets the version of the PDF default 1.7
@@ -51,11 +56,83 @@ public class Catalog implements Element {
     }
 
     /**
+     * Sets the pages object
+     * @param pages Pages element
+     */
+    public void setPages(Pages pages) {
+        this.pages = pages;
+    }
+
+    /**
+     * Gets the pages objecy
+     * @return Pages element
+     */
+    public Pages getPages() {
+        return pages;
+    }
+
+    /**
+     * Sets the outlines object
+     * @param outlines Outlines object
+     */
+    public void setOutlines(Outlines outlines) {
+        this.outlines = outlines;
+    }
+
+    /**
+     * Gets the Outlines object
+     * @return Outlines object
+     */
+    public Outlines getOutlines() {
+        return outlines;
+    }
+
+    /**
+     * Sets the documents structTreeRoot
+     * @param structTreeRoot StructTreeRoot object
+     */
+    public void setStructTreeRoot(StructTreeRoot structTreeRoot) {
+        this.structTreeRoot = structTreeRoot;
+    }
+
+    /**
+     * Gets the struct tree root
+     * @return StructTreeRoot object
+     */
+    public StructTreeRoot getStructTreeRoot() {
+        return structTreeRoot;
+    }
+
+    /**
      * Sets the meta data object
      * @param metaData XmpMetaData object for the PDF
      */
     public void setMetaData(XmpMetaData metaData) {
         this.metaData = metaData;
+    }
+
+    /**
+     * Gets the meta data object
+     * @return XmpMetaData object
+     */
+    public XmpMetaData getMetaData() {
+        return metaData;
+    }
+
+    /**
+     * Sets the Acro Form
+     * @param acroForm AcroForm object
+     */
+    public void setAcroForm(AcroForm acroForm) {
+        this.acroForm = acroForm;
+    }
+
+    /**
+     * Gets the AcroForm
+     * @return AcroForm object
+     */
+    public AcroForm getAcroForm() {
+        return acroForm;
     }
 
     @Override
@@ -74,12 +151,22 @@ public class Catalog implements Element {
         sb.append(objectId + " 0 obj\n");
         sb.append("<< /Type /Catalog\n");
         sb.append("/Version /" + version + "\n");
+        if (pages != null) {
+            sb.append("/Pages " + pages.getObjectId() + " 0 R\n");
+        }
+        if (structTreeRoot != null) {
+            sb.append("/StructTreeRoot " + structTreeRoot.getObjectId() + " 0 R\n");
+        }
+        if (acroForm != null) {
+            sb.append("/AcroForm " + acroForm.getObjectId() + " 0 R\n");
+        }
         if (encryptionKey != null) {
-            sb.append("/Lang <" + PdfR4V4Security.encryptString(encryptionKey, objectId, 0, language.getBytes(StandardCharsets.UTF_8)) + ">\n");
+            sb.append("/Lang <" + Util.byteToHex(PdfR4V4Security.encryptString(encryptionKey, objectId, 0, language.getBytes(StandardCharsets.ISO_8859_1))) + ">\n");
         } else {
             sb.append("/Lang (" + language + ")\n");
         }
         sb.append("/MarkInfo << /Marked true >>\n");
+        sb.append("/Outlines " + outlines.getObjectId() + "\n");
         sb.append("/Metadata " + metaData.getObjectId() + " 0 R\n");
         sb.append("/ViewerPrefernces << /DisplayDocTitle true >>\n");
         sb.append(">>\n");

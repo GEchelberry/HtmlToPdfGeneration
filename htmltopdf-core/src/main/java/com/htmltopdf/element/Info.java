@@ -24,6 +24,9 @@ import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
+import com.htmltopdf.renderer.Util;
+import com.htmltopdf.security.PdfR4V4Security;
+
 /**
  * Class to hold the Information element for the PDF
  */
@@ -146,7 +149,18 @@ public class Info implements Element {
         StringBuilder sb = new StringBuilder();
         sb.append(objectId + " 0 obj\n");
         if (encryptionKey != null) {
-            
+            byte[] encryptTitle = PdfR4V4Security.encryptString(encryptionKey, objectId, 0, title.getBytes(StandardCharsets.ISO_8859_1));
+            byte[] encryptAuthor = PdfR4V4Security.encryptString(encryptionKey, objectId, 0, author.getBytes(StandardCharsets.ISO_8859_1));
+            byte[] encryptSubject = PdfR4V4Security.encryptString(encryptionKey, objectId, 0, subject.getBytes(StandardCharsets.ISO_8859_1));
+            byte[] encryptCreator = PdfR4V4Security.encryptString(encryptionKey, objectId, 0, creator.getBytes(StandardCharsets.ISO_8859_1));
+            byte[] encryptProducer = PdfR4V4Security.encryptString(encryptionKey, objectId, 0, producer.getBytes(StandardCharsets.ISO_8859_1));
+            byte[] encryptCreateDate = PdfR4V4Security.encryptString(encryptionKey, objectId, 0, creationDate.getBytes(StandardCharsets.ISO_8859_1));
+            sb.append("<< /Title <" + Util.byteToHex(encryptTitle) + ">\n");
+            sb.append("/Author <" + Util.byteToHex(encryptAuthor) + ">\n");
+            sb.append("/Subject <" + Util.byteToHex(encryptSubject) + ">\n");
+            sb.append("/Creator <" + Util.byteToHex(encryptCreator) + ">\n");
+            sb.append("/Producer <" + Util.byteToHex(encryptProducer) + ">\n");
+            sb.append("/CreationDate <" + Util.byteToHex(encryptCreateDate) + ">\n");
         } else {
             sb.append("<< /Title (" + title + ")\n");
             sb.append("/Author (" + author + ")\n");
