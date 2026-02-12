@@ -176,6 +176,7 @@ public class Font implements Element {
             }
         }
         sb.append("]\n");
+        sb.append("/Encoding /WinAnsiEncoding\n");
         sb.append("/FontDescriptor " + fontDecriptor.getObjectId() + " 0 R\n");
         sb.append(">>\nendobj\n");
 

@@ -1,7 +1,14 @@
+C:\Users\geche\Documents\GitHub\HtmlToPdfGeneration\htmltopdf-core\src\main\java\com\htmltopdf\draw\DrawBox.java
+C:\Users\geche\Documents\GitHub\HtmlToPdfGeneration\htmltopdf-core\src\main\java\com\htmltopdf\draw\DrawLine.java
+C:\Users\geche\Documents\GitHub\HtmlToPdfGeneration\htmltopdf-core\src\main\java\com\htmltopdf\element\AcroForm.java
+C:\Users\geche\Documents\GitHub\HtmlToPdfGeneration\htmltopdf-core\src\main\java\com\htmltopdf\element\Annotation.java
 C:\Users\geche\Documents\GitHub\HtmlToPdfGeneration\htmltopdf-core\src\main\java\com\htmltopdf\element\AppearanceStream.java
 C:\Users\geche\Documents\GitHub\HtmlToPdfGeneration\htmltopdf-core\src\main\java\com\htmltopdf\element\Catalog.java
 C:\Users\geche\Documents\GitHub\HtmlToPdfGeneration\htmltopdf-core\src\main\java\com\htmltopdf\element\ContentStream.java
+C:\Users\geche\Documents\GitHub\HtmlToPdfGeneration\htmltopdf-core\src\main\java\com\htmltopdf\element\DrawContent.java
+C:\Users\geche\Documents\GitHub\HtmlToPdfGeneration\htmltopdf-core\src\main\java\com\htmltopdf\element\DrawImage.java
 C:\Users\geche\Documents\GitHub\HtmlToPdfGeneration\htmltopdf-core\src\main\java\com\htmltopdf\element\Element.java
+C:\Users\geche\Documents\GitHub\HtmlToPdfGeneration\htmltopdf-core\src\main\java\com\htmltopdf\element\EncryptionElement.java
 C:\Users\geche\Documents\GitHub\HtmlToPdfGeneration\htmltopdf-core\src\main\java\com\htmltopdf\element\FormElement.java
 C:\Users\geche\Documents\GitHub\HtmlToPdfGeneration\htmltopdf-core\src\main\java\com\htmltopdf\element\FormField.java
 C:\Users\geche\Documents\GitHub\HtmlToPdfGeneration\htmltopdf-core\src\main\java\com\htmltopdf\element\Info.java

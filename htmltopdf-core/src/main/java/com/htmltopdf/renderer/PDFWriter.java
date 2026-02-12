@@ -34,7 +34,7 @@ import com.htmltopdf.element.Info;
 public class PDFWriter {
     private static final String HEADER = "%PDF-1.7\n";
     private static final byte[] MARKER = {'%', (byte) 0xE2, (byte) 0xE3, (byte) 0xCF, (byte) 0xD3, '\n'};
-    private static final String EOF = "%EOF\n";
+    private static final String EOF = "%%EOF\n";
     private List<Long> offsets = new ArrayList<>();
 
     /**
@@ -76,7 +76,7 @@ public class PDFWriter {
         outputStream.write(("<< /Size " + (offsets.size() + 1) + "\n").getBytes(StandardCharsets.ISO_8859_1));
         if (encryptionElementId != 0) outputStream.write(("/Encrypt " + encryptionElementId + " 0 R\n").getBytes(StandardCharsets.ISO_8859_1));
         outputStream.write(("/Root 1 0 R\n" + "/Info " + info.getObjectId() + " 0 R\n").getBytes(StandardCharsets.ISO_8859_1));
-        outputStream.write(("/ID [<" + documentId + "> <" + documentId + ">]\n").getBytes(StandardCharsets.ISO_8859_1));
+        outputStream.write(("/ID [<" + documentId + "> <" + documentId + ">]\n" + ">>\n").getBytes(StandardCharsets.ISO_8859_1));
         outputStream.write(("startxref\n" + pos + "\n").getBytes(StandardCharsets.ISO_8859_1));
 
         // Write End of File

@@ -166,11 +166,13 @@ public class Catalog implements Element {
             sb.append("/Lang (" + language + ")\n");
         }
         sb.append("/MarkInfo << /Marked true >>\n");
-        sb.append("/Outlines " + outlines.getObjectId() + "\n");
+        if (outlines != null) {
+            sb.append("/Outlines " + outlines.getObjectId() + " 0 R\n");
+        }
         sb.append("/Metadata " + metaData.getObjectId() + " 0 R\n");
-        sb.append("/ViewerPrefernces << /DisplayDocTitle true >>\n");
+        sb.append("/ViewerPreferences << /DisplayDocTitle true >>\n");
         sb.append(">>\n");
-        sb.append("endobj");
+        sb.append("endobj\n");
 
         return sb.toString().getBytes(StandardCharsets.ISO_8859_1);
     }
@@ -179,6 +181,15 @@ public class Catalog implements Element {
     public List<Element> buildElementList() {
         List<Element> elements = new ArrayList<>();
         elements.add(this);
+        if (outlines != null) {
+            elements.addAll(outlines.buildElementList());
+        }
+        elements.addAll(structTreeRoot.buildElementList());
+        elements.addAll(pages.buildElementList());
+        if (acroForm != null) {
+            elements.addAll(acroForm.buildElementList());
+        }
+        elements.add(metaData);
 
         return elements;
     }

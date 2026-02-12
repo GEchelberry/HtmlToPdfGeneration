@@ -93,7 +93,7 @@ public class StructTreeRoot implements Element {
                 }
             }
         }
-        sb.append("/RoleMap << /Span /Span /Page /Part >>\n");
+        sb.append("/RoleMap << /SPAN /Span /Page /Part >>\n");
         if (parentTree != null) {
             sb.append("/ParentTree " + parentTree.getObjectId() + " 0 R\n");
         }

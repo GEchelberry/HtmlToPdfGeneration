@@ -175,7 +175,7 @@ public class Page implements Element {
             if (!fonts.isEmpty()) {
                 sb.append("/Font << ");
                 for (int i = 0; i < fonts.size(); i++) {
-                    sb.append("/F " + (i + 1) + " " + fonts.get(i).getObjectId() +  " 0 R ");
+                    sb.append("/F" + (i + 1) + " " + fonts.get(i).getObjectId() +  " 0 R ");
                 }
                 sb.append(">>\n");
             }

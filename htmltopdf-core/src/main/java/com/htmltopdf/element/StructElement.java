@@ -164,6 +164,17 @@ public class StructElement implements Element {
         sb.append("/S /" + type + "\n");
         sb.append("/P " + parent.getObjectId() + " 0 R\n");
         if (page != null) sb.append("/Pg " + page.getObjectId() + " 0 R\n");
+        if (!kids.isEmpty()) {
+            sb.append("/K [");
+            for (int i = 0; i < kids.size(); i++) {
+                sb.append(kids.get(i).getObjectId() + " 0 R");
+                if (i == kids.size() - 1) {
+                    sb.append("]\n");
+                } else {
+                    sb.append(" ");
+                }
+            }
+        }
         if (type.equals(TD)) {
             sb.append("/A << /O / Table" + (rowspan != 0 ? " /RowSpan " + rowspan : "") + (colspan != 0 ? " /ColSpan " + colspan : "") + ">>\n");
         }

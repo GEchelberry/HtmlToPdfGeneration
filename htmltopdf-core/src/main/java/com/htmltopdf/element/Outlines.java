@@ -66,8 +66,8 @@ public class Outlines implements Element {
         if (!outlines.isEmpty()) {
             sb.append(objectId + " 0 obj\n");
             sb.append("<< /Type /Outlines\n");
-            sb.append("/First " + outlines.get(0) + " 0 R\n");
-            sb.append("/Last " + outlines.get(outlines.size() - 1) + " 0 R\n");
+            sb.append("/First " + outlines.get(0).getObjectId() + " 0 R\n");
+            sb.append("/Last " + outlines.get(outlines.size() - 1).getObjectId() + " 0 R\n");
             sb.append("/Count " + outlines.size() + "\n");
             sb.append(">>\n");
             sb.append("endobj\n");

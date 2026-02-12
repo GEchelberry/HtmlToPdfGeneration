@@ -35,6 +35,7 @@ public class Pages implements Element {
      * @param objectId
      */
     public Pages(int objectId) {
+        kids = new ArrayList<>();
         this.setObjectId(objectId);
     }
 
@@ -88,6 +89,9 @@ public class Pages implements Element {
     public List<Element> buildElementList() {
         List<Element> elements = new ArrayList<>();
         elements.add(this);
+        for (Page kid : kids) {
+            elements.addAll(kid.buildElementList());
+        }
 
         return elements;
     }

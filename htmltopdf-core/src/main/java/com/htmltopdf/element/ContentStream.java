@@ -98,7 +98,7 @@ public class ContentStream implements Element {
 
         StringBuilder sb = new StringBuilder();
         sb.append(objectId + " 0 obj\n");
-        sb.append("/Length " + content.length + (compressContent ? " /Filter /FlateDecode >>\n" : ">>\n"));
+        sb.append("<< /Length " + content.length + (compressContent ? " /Filter /FlateDecode >>\n" : ">>\n"));
         sb.append("stream\n");
         byte[] start = sb.toString().getBytes(StandardCharsets.ISO_8859_1);
         byte[] end = "\nendstream\nendobj\n".getBytes(StandardCharsets.ISO_8859_1);

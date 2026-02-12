@@ -51,7 +51,7 @@ import com.htmltopdf.fonts.FontName;
  * Class that manages all the PDF structure object
  */
 public class PDFRenderer {
-    private int objectId = -1;
+    private int objectId = 1;
     private int parentTreeNextKey = -1;
     private int nextMcid = 0;
     private Catalog catalog;
@@ -198,7 +198,7 @@ public class PDFRenderer {
         elements.add(info);
         elements.sort(Comparator.comparingInt(Element::getObjectId));
         PDFWriter writer = new PDFWriter();
-        writer.write(outputStream, elements, info, catalog.getMetaData().getDocumentId(), encryptionElement.getObjectId(), encryptionElement.getEncryptionKey());
+        writer.write(outputStream, elements, info, catalog.getMetaData().getDocumentId(), encryptionElement != null ? encryptionElement.getObjectId() : 0, encryptionElement != null ? encryptionElement.getEncryptionKey() : null);
     }
 
     /**
